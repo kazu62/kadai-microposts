@@ -64,4 +64,17 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    
+     public function handle($request, Closure $next)
+    {
+        if ($this->auth->guest()) {
+            if ($request->ajax()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return redirect()->guest(route('login.get'));  // 修正
+            }
+        }
+
+        return $next($request);
+    }
 }

@@ -65,7 +65,7 @@ class AuthController extends Controller
         ]);
     }
     
-     public function handle($request, Closure $next)
+    public function handle($request, Closure $next)
     {
         if ($this->auth->guest()) {
             if ($request->ajax()) {

@@ -42,6 +42,7 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(Micropost::class);
     }
     
+    // フォローフォロワー
     public function followings()
     {
         return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();
@@ -51,6 +52,7 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany(User::class, 'user_follow', 'follow_id', 'user_id')->withTimestamps();
     }
+    // フォローフォロワーここまで
     
     public function follow($userId)
     {

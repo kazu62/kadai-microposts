@@ -35,9 +35,9 @@ class UserFollowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-         \Auth::user()->follow($id);
+        \Auth::user()->follow($id);
         return redirect()->back();
     }
 

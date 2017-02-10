@@ -5,21 +5,15 @@
          <?php $user = Auth::user(); ?>
         <div class="row">
             <aside class="col-md-4">
-                <div class="panel panel-default">
-                <div class="panel-heading">
-                <h2 class="panel-title">{{ $user->name }}</h2>
                 {!! Form::open(['route' => 'microposts.store']) !!}
                     <div class="form-group">
                         {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '5']) !!}
                     </div>
                     {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
-            <div class="panel-body">
-                    <img class="media-object img-rounded img-responsive" src="{{ Gravatar::src($user->email, 200) }}" alt="">
-                </div>
-            <li>{!! link_to_route('users.favoritings','お気に入り一覧') !!}</a></li>
             </aside>
             <div class="col-xs-8">
+                <h1>お気に入り一覧</h1>
                 @if (count($microposts) > 0)
                     @include('microposts.microposts', ['microposts' => $microposts])
                 @endif
@@ -34,3 +28,4 @@
     </div>
     @endif
 @endsection
+{!! $microposts->render() !!}

@@ -12,6 +12,9 @@
             <div>
                 <p>{!! nl2br(e($micropost->content)) !!}</p>
             </div>
+            @if (count($microposts) > 0)
+                @include('favorites.favorites_button', ['microposts' => $microposts])
+            @endif
             <div>
                 @if (Auth::user()->id == $micropost->user_id)
                     {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
